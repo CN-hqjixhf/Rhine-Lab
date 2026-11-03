@@ -1,0 +1,17 @@
+[project]
+name = "rhine-lab-ai-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "HongqiAE", email = "x13635352759@outlook.com" }
+]
+requires-python = ">=3.12"
+dependencies = []
+
+[project.scripts]
+rhine-lab-ai-agent = "rhine_lab_ai_agent:main"
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14.0"]
+build-backend = "uv_build"
