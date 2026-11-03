@@ -7,7 +7,9 @@ authors = [
     { name = "HongqiAE", email = "x13635352759@outlook.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "requests>=2.34.2",
+]
 
 [project.scripts]
 rhine-lab-ai-agent = "rhine_lab_ai_agent:main"
