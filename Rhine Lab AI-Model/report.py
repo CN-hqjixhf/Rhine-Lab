@@ -1,8 +1,10 @@
 import json
 import base64
 from pathlib import Path
+import os
 #调用文件路径，送去读取
 File_name="student_scores.json"
+output_name="report.json"
 road1=Path(__file__).parent
 road2=(road1/"data"/File_name).resolve()
 def load_records(road2):
@@ -21,6 +23,7 @@ def load_records(road2):
     if not isinstance(scores,list):
         raise ValueError("文件格式错误")
     return scores
+#读取后的数据存入scores
 scores=load_records(road2)
 def decode_marked_value(value,i):
         result=value[i]
@@ -78,12 +81,15 @@ def validate_record(record):
             elif not ("15:00"<=str(submit_time)<="16:30"):
                 illegal_error+=1
     return {"None_error":None_error,"illegal_error":illegal_error}
-def smmarize(records,pass_score):
+#统计列表数据
+def summarize(records,pass_score):
     total=0
     passed=0
     man=0
     woman=0
     error=0
+    after4=0
+    before4=0
     for i in range(len(records)):
         alist=[]
         alist.append(records[i])
@@ -102,6 +108,10 @@ def smmarize(records,pass_score):
                     man+=1
                 elif alist[0]["gender"]=="女":
                     woman+=1
+                if "16:00"<str(alist[0]["submit_time"])<="16:30":
+                    after4+=1
+                elif "15:00"<=str(alist[0]["submit_time"])<="16:00":
+                    before4+=1
     count=len(records)-error
     average=total/count
     return{
@@ -113,6 +123,25 @@ def smmarize(records,pass_score):
             "男":man,
             "女":woman,
         },
+        "after4":after4,
+        "before4":before4,
     }
-output2=smmarize(new_list,60)
-print(output2)
+def write_report(summarize):
+    data=summarize
+    if not os.path.exists(f"{road1}\\output"):
+        os.makedirs(f"{road1}\\output")
+    road3=(road1/"output"/output_name)
+    path=Path(road3)
+    with path.open("w",encoding="utf-8") as f:
+        json.dump(data,f,indent=2,ensure_ascii=False)
+def main():
+    write_report(summarize(new_list,60))
+    error=validate_record(new_list)
+    print(f"原始数据:{len(scores)}条,有效数据:{len(scores)-error["None_error"]-error["illegal_error"]}")
+    print(f"空数据错误数:{error["None_error"]},非法数据错误数:{error["illegal_error"]}")
+    print(f"平均分:{summarize(new_list,60)["average"]},60分及格人数:{summarize(new_list,60)["passed"]}")
+    print(f"男生有:{summarize(new_list,60)["gender_counts"]["男"]}人,女生有:{summarize(new_list,60)["gender_counts"]["女"]}人")
+    print(f"15:30-16:00(含16:00)提交人数:{summarize(new_list,60)["before4"]},16:00-16:30(不含16:00)提交人数:{summarize(new_list,60)["after4"]}")
+    print("原始信息输出json到output/output.json")
+if __name__ == "__main__":
+    raise SystemExit(main())
