@@ -135,13 +135,13 @@ def write_report(summarize):
     with path.open("w",encoding="utf-8") as f:
         json.dump(data,f,indent=2,ensure_ascii=False)
 def main():
-    write_report(summarize(new_list,60))
+    write_report(summarize(new_list,80))
     error=validate_record(new_list)
     print(f"原始数据:{len(scores)}条,有效数据:{len(scores)-error["None_error"]-error["illegal_error"]}")
     print(f"空数据错误数:{error["None_error"]},非法数据错误数:{error["illegal_error"]}")
-    print(f"平均分:{summarize(new_list,60)["average"]},60分及格人数:{summarize(new_list,60)["passed"]}")
-    print(f"男生有:{summarize(new_list,60)["gender_counts"]["男"]}人,女生有:{summarize(new_list,60)["gender_counts"]["女"]}人")
-    print(f"15:30-16:00(含16:00)提交人数:{summarize(new_list,60)["before4"]},16:00-16:30(不含16:00)提交人数:{summarize(new_list,60)["after4"]}")
+    print(f"平均分:{summarize(new_list,80)["average"]},80分及格人数:{summarize(new_list,80)["passed"]}")
+    print(f"男生有:{summarize(new_list,80)["gender_counts"]["男"]}人,女生有:{summarize(new_list,80)["gender_counts"]["女"]}人")
+    print(f"15:30-16:00(含16:00)提交人数:{summarize(new_list,80)["before4"]},16:00-16:30(不含16:00)提交人数:{summarize(new_list,80)["after4"]}")
     print("原始信息输出json到output/output.json")
 if __name__ == "__main__":
     raise SystemExit(main())
