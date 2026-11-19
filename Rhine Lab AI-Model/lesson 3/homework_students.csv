@@ -1,0 +1,9 @@
+﻿student_id,name,grade,study_hours_per_week,attendance_rate,practice_exercises_week
+S01,张三,大一,4,0.8,18
+S02,李四,大一,6,0.9,24
+S03,王五,大一,5,0.85,20
+S04,赵六,大二,8,0.95,30
+S05,陈晨,大二,3,0.7,12
+S06,刘洋,大二,7,0.88,26
+S07,孙悦,大三,9,0.98,34
+S08,周宁,大三,2,0.6,10
