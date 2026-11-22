@@ -1,19 +1,31 @@
 {
     "configurations": [
         {
-            "name": "Win32",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
+            "name": "MinGW-w64 GCC 8.1.0 (x64)",
+            "compilerPath": "D:/mingw64/bin/gcc.exe",
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++17",
+            "intelliSenseMode": "windows-gcc-x64",
             "defines": [
                 "_DEBUG",
                 "UNICODE",
                 "_UNICODE"
             ],
-            "cStandard": "gnu17",
-            "cppStandard": "gnu++14",
-            "intelliSenseMode": "windows-gcc-x64",
-            "compilerPath": "D:/mingw64/bin/gcc.exe"
+            "includePath": [
+                "${workspaceFolder}/**",
+                "D:/mingw64/include",
+                "D:/mingw64/x86_64-w64-mingw32/include",
+                "D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}",
+                    "D:/mingw64/include",
+                    "D:/mingw64/x86_64-w64-mingw32/include",
+                    "D:/mingw64/lib/gcc/x86_64-w64-mingw32/8.1.0/include"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
         }
     ],
     "version": 4
